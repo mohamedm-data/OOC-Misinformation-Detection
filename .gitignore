@@ -1,0 +1,35 @@
+# Data (large, downloaded by scripts; see README)
+data/
+# Generated embedding arrays (tens of MB)
+outputs/embeddings/
+# Model weights / caches
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+.cache/
+hf_cache/
+# Large data files (keep anything over ~50 MB out of git)
+*.pkl
+*.tar
+*.tar.gz
+*.npy
+# Python / virtualenvs
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# Secrets
+.env
+*.pem
+*token*
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+# Our own small trained classifiers are kept (a few MB)
+!outputs/models/
+!outputs/models/*
