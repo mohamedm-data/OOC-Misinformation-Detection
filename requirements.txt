@@ -1,0 +1,14 @@
+# Python 3.11. Versions are the ones used for the recorded results (docs/RUNLOG.md).
+torch==2.14.1
+transformers==5.19.0
+numpy==2.4.6
+pandas==3.0.6
+pyarrow==26.0.0
+scikit-learn==1.9.1
+matplotlib==3.11.2
+pillow==12.3.0
+tqdm==4.70.1
+joblib==1.6.0
+# Step 6 only (embedding preprocessing comparison):
+torchvision==0.29.1
+# optional: pip install ftfy "git+https://github.com/openai/CLIP.git"
