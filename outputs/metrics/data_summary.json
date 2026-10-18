@@ -1,0 +1,423 @@
+{
+  "annotation_counts": {
+    "merged_balanced/train": {
+      "n": 71072,
+      "falsified": 35536,
+      "genuine": 35536,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "source_dataset",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "merged_balanced/val": {
+      "n": 7024,
+      "falsified": 3512,
+      "genuine": 3512,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "source_dataset",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "merged_balanced/test": {
+      "n": 7264,
+      "falsified": 3632,
+      "genuine": 3632,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "source_dataset",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "person_sbert_text_text/train": {
+      "n": 17768,
+      "falsified": 8884,
+      "genuine": 8884,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "person_sbert_text_text/val": {
+      "n": 1756,
+      "falsified": 878,
+      "genuine": 878,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "person_sbert_text_text/test": {
+      "n": 1816,
+      "falsified": 908,
+      "genuine": 908,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "scene_resnet_place/train": {
+      "n": 124860,
+      "falsified": 62430,
+      "genuine": 62430,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "scene_resnet_place/val": {
+      "n": 13588,
+      "falsified": 6794,
+      "genuine": 6794,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "scene_resnet_place/test": {
+      "n": 13636,
+      "falsified": 6818,
+      "genuine": 6818,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "semantics_clip_text_image/train": {
+      "n": 453128,
+      "falsified": 226564,
+      "genuine": 226564,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "semantics_clip_text_image/val": {
+      "n": 47248,
+      "falsified": 23624,
+      "genuine": 23624,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "semantics_clip_text_image/test": {
+      "n": 47288,
+      "falsified": 23644,
+      "genuine": 23644,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "semantics_clip_text_text/train": {
+      "n": 516072,
+      "falsified": 258036,
+      "genuine": 258036,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "semantics_clip_text_text/val": {
+      "n": 53876,
+      "falsified": 26938,
+      "genuine": 26938,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    },
+    "semantics_clip_text_text/test": {
+      "n": 54164,
+      "falsified": 27082,
+      "genuine": 27082,
+      "columns": [
+        "id",
+        "image_id",
+        "similarity_score",
+        "falsified"
+      ],
+      "dup_rows": 0,
+      "missing_values": 0
+    }
+  },
+  "example_annotation": {
+    "id": 620701,
+    "image_id": 1179991,
+    "similarity_score": 0.8471266627,
+    "source_dataset": 2,
+    "falsified": true
+  },
+  "source_datasets": {
+    "0": "semantics_clip_text_image",
+    "1": "semantics_clip_text_text",
+    "2": "scene_resnet_place",
+    "3": "person_sbert_text_text"
+  },
+  "merged_balanced": {
+    "train": {
+      "n": 71072,
+      "label_balance": {
+        "False": 35536,
+        "True": 35536
+      },
+      "method_x_label": {
+        "person_sbert_text_text|False": 8884,
+        "person_sbert_text_text|True": 8884,
+        "scene_resnet_place|False": 8884,
+        "scene_resnet_place|True": 8884,
+        "semantics_clip_text_image|False": 8884,
+        "semantics_clip_text_image|True": 8884,
+        "semantics_clip_text_text|False": 8884,
+        "semantics_clip_text_text|True": 8884
+      },
+      "unique_caption_ids": 35536,
+      "unique_image_ids": 59876,
+      "dup_pairs": 0,
+      "genuine_with_id_ne_image_id": 0,
+      "text_emb_coverage_id": 1.0,
+      "image_emb_coverage_image_id": 1.0,
+      "meta_coverage_id": 1.0,
+      "meta_coverage_image_id": 1.0,
+      "n_image_emb": 473663,
+      "n_text_emb": 385850,
+      "n_meta": 385003
+    },
+    "val": {
+      "n": 7024,
+      "label_balance": {
+        "False": 3512,
+        "True": 3512
+      },
+      "method_x_label": {
+        "person_sbert_text_text|False": 878,
+        "person_sbert_text_text|True": 878,
+        "scene_resnet_place|False": 878,
+        "scene_resnet_place|True": 878,
+        "semantics_clip_text_image|False": 878,
+        "semantics_clip_text_image|True": 878,
+        "semantics_clip_text_text|False": 878,
+        "semantics_clip_text_text|True": 878
+      },
+      "unique_caption_ids": 3512,
+      "unique_image_ids": 5943,
+      "dup_pairs": 0,
+      "genuine_with_id_ne_image_id": 0,
+      "text_emb_coverage_id": 1.0,
+      "image_emb_coverage_image_id": 1.0,
+      "meta_coverage_id": 1.0,
+      "meta_coverage_image_id": 1.0,
+      "n_image_emb": 50000,
+      "n_text_emb": 40864,
+      "n_meta": 40830
+    },
+    "test": {
+      "n": 7264,
+      "label_balance": {
+        "False": 3632,
+        "True": 3632
+      },
+      "method_x_label": {
+        "person_sbert_text_text|False": 908,
+        "person_sbert_text_text|True": 908,
+        "scene_resnet_place|False": 908,
+        "scene_resnet_place|True": 908,
+        "semantics_clip_text_image|False": 908,
+        "semantics_clip_text_image|True": 908,
+        "semantics_clip_text_text|False": 908,
+        "semantics_clip_text_text|True": 908
+      },
+      "unique_caption_ids": 3632,
+      "unique_image_ids": 6147,
+      "dup_pairs": 0,
+      "genuine_with_id_ne_image_id": 0,
+      "text_emb_coverage_id": 1.0,
+      "image_emb_coverage_image_id": 1.0,
+      "meta_coverage_id": 1.0,
+      "meta_coverage_image_id": 1.0,
+      "n_image_emb": 50000,
+      "n_text_emb": 40915,
+      "n_meta": 40915
+    }
+  },
+  "embedding_format": {
+    "image_pkl_type": "dict",
+    "image_n": 473663,
+    "image_key_type": "int",
+    "image_value_shape": [
+      512
+    ],
+    "image_value_dtype": "float32",
+    "text_pkl_type": "dict",
+    "text_n": 385850,
+    "text_key_type": "int",
+    "text_value_shape": [
+      512
+    ]
+  },
+  "curated": {
+    "train": {
+      "n": 19200,
+      "per_cell_target": 2400,
+      "method_x_label": {
+        "person_sbert_text_text|False": 2400,
+        "person_sbert_text_text|True": 2400,
+        "scene_resnet_place|False": 2400,
+        "scene_resnet_place|True": 2400,
+        "semantics_clip_text_image|False": 2400,
+        "semantics_clip_text_image|True": 2400,
+        "semantics_clip_text_text|False": 2400,
+        "semantics_clip_text_text|True": 2400
+      },
+      "caption_missing": 0
+    },
+    "val": {
+      "n": 2400,
+      "per_cell_target": 300,
+      "method_x_label": {
+        "person_sbert_text_text|False": 300,
+        "person_sbert_text_text|True": 300,
+        "scene_resnet_place|False": 300,
+        "scene_resnet_place|True": 300,
+        "semantics_clip_text_image|False": 300,
+        "semantics_clip_text_image|True": 300,
+        "semantics_clip_text_text|False": 300,
+        "semantics_clip_text_text|True": 300
+      },
+      "caption_missing": 0
+    },
+    "test": {
+      "n": 2400,
+      "per_cell_target": 300,
+      "method_x_label": {
+        "person_sbert_text_text|False": 300,
+        "person_sbert_text_text|True": 300,
+        "scene_resnet_place|False": 300,
+        "scene_resnet_place|True": 300,
+        "semantics_clip_text_image|False": 300,
+        "semantics_clip_text_image|True": 300,
+        "semantics_clip_text_text|False": 300,
+        "semantics_clip_text_text|True": 300
+      },
+      "caption_missing": 0
+    }
+  },
+  "metadata_format": {
+    "container": "dict",
+    "key_type": "str",
+    "example_key": "728421",
+    "example_record": {
+      "id": 728421,
+      "caption": "Anthony Stokes last played a league game for Celtic in August",
+      "image_path": "visual_news/origin/guardian/images/0540/632.jpg",
+      "article_path": "visual_news/origin/guardian/articles/728421.txt",
+      "full_article_path": "visual_news/articles/guardian/http:::mobile-apps.guardianapis.com:items:football:2015:dec:02:anthony-stokes-suspended-celtic-twitter-inverness-200.json",
+      "caption_entities_spacy": [
+        [
+          "Celtic",
+          "NORP"
+        ],
+        [
+          "Anthony Stokes",
+          "PERSON"
+        ]
+      ],
+      "caption_entities_rel": [
+        [
+          "Anthony_Stokes",
+          "PER",
+          "Anthony Stokes",
+          0.9918
+        ],
+        [
+          "Celtic_F.C.",
+          "ORG",
+          "Celtic",
+          0.9935
+        ]
+      ],
+      "image_has_person": true,
+      "topic": "football",
+      "source": "guardian",
+      "timestamp": "2015-12-02T11:33:37Z",
+      "title": "Anthony Stokes suspended by Celtic for two weeks after Twitter rant",
+      "title_entities_spacy": [
+        [
+          "Twitter",
+          "ORG"
+        ],
+        [
+          "Anthony Stokes",
+          "PERSON"
+        ],
+        [
+          "Celtic",
+          "NORP"
+        ]
+      ]
+    }
+  },
+  "curated_id_overlap": {
+    "train&val": 0,
+    "train&test": 0,
+    "val&test": 0
+  }
+}
