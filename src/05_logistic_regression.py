@@ -65,7 +65,7 @@ def main():
     }
     update_results("logistic_regression", res)
 
-    plot_roc_by_method(tdf, {"LogReg": p_test}, "Logistic regression vs. cosine baseline, ROC on test",
+    plot_roc_by_method(tdf, {"LogReg": p_test}, "Logistic regression vs. cosine baseline, ROC on test", 
                        FIG / "fig_roc_logreg_by_method.png", ref_score=base_test)
     plot_auc_bars({"Cosine baseline": ev_base, "Logistic regression": ev},
                   "Test ROC-AUC per mismatch method: logistic regression vs. cosine baseline",

@@ -143,7 +143,7 @@ All numbers are written to `outputs/metrics/results.json`. Run times and version
 - [Project proposal](docs/reports/DATA5500_Proposal_Mohamed.pdf)
 - [Project plan](docs/reports/DATA5500_ProjectPlan_Mohamed.pdf)
 - Design document: [v1](docs/reports/DATA5500_DesignDocument_Mohamed_v1.pdf), [v2](docs/reports/DATA5500_DesignDocument_Mohamed_v2.pdf)
-- [Progress report 2](docs/reports/DATA5500_ProgressReport2_Mohamed.pdf)
+- Progress reports: [2](docs/reports/DATA5500_ProgressReport2_Mohamed.pdf), [3](docs/reports/DATA5500_ProgressReport3_Mohamed.pdf)
 - [Run log](docs/RUNLOG.md), [blocker log](docs/BLOCKERS.md)
 
 ## References
