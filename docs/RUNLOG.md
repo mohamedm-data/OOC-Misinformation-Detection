@@ -14,6 +14,7 @@ matplotlib 3.11.2, pillow 12.3.0, pyarrow 26.0.0, tqdm 4.70.1.
 | 5. Logistic regression, C sweep, bootstrap CIs (2026-10-18) | `cd src && ../.venv/bin/python 05_logistic_regression.py` | 26s |
 | 6. Embedding preprocessing variants, 10 variants x 2,641 images (2026-10-18; first run also downloads OpenAI ViT-B/32 weights, 338 MB) | `cd src && ../.venv/bin/python 06_embedding_preprocessing.py` | 3m27s |
 | 7. MLP first draft, CPU, 12 epochs (best epoch 2) (2026-10-18) | `cd src && ../.venv/bin/python 07_mlp.py` | 36–45s |
+| 8. Full training split: learning curve, 3 MLP settings, calibration, error analysis (2026-11-01; 4-core Linux CPU, torch 2.15.0, scikit-learn 1.9.1; first run exports `data/full_export/` from the pickles) | `cd src && python 08_full_split.py` | 6m14s |
 
 Notes
 - Subset `person_sbert_text_text` is a `data/` folder in the repo (do not filter it out with the "sbert" exclusion).
@@ -23,3 +24,4 @@ Notes
 - Mapping tar path -> NewsCLIPpings id via metadata `image_path` with the `visual_news/` prefix stripped.
 - Seed 5500 everywhere.
 - 2026-10-18: added torchvision 0.29.1, ftfy 6.3.1, and OpenAI `clip` 1.0 (from GitHub) for step 6 only. Steps 5 and 7 are deterministic: rerunning them reproduced identical numbers.
+- 2026-11-01, step 8: embeddings for the 85,360 `merged_balanced` pairs are stored as float16 in `data/full_export/` (about 175 MB) so the step runs in about 3 GB RAM. Check: the step 5 setting retrained from these arrays gives the same curated test AUC (0.7513 vs. 0.751).

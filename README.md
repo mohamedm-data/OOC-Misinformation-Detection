@@ -4,7 +4,7 @@ DATA5500 Senior Design, Fall 2026. Author: **Mohamed Mohamed**. Instructor: **We
 
 Out-of-context (OOC) misinformation pairs a **real, unedited photo** with a caption that misrepresents it. Pixel forensics finds nothing wrong with these images. This project instead measures whether the image and the caption *mean* the same thing. It uses frozen [CLIP](https://github.com/openai/CLIP) ViT-B/32 embeddings and classifiers trained on [NewsCLIPpings](https://github.com/g-luo/news_clippings), and it scores each pair as a likely genuine match or a likely out-of-context mismatch. The output is a **consistency score that supports a human decision; it is not a verdict**. Every result is reported per mismatch-generation method, because one aggregate number hides very different behaviour.
 
-**Status (Week 7 of 14):** data preparation, the embedding-reproduction experiment, the similarity baseline, logistic regression, and a first-draft MLP are complete. Next: tune the neural network, then build the Streamlit app.
+**Status (Week 8 of 14):** data preparation, the embedding-reproduction experiment, the similarity baseline, logistic regression, the MLP, and training on the full 71,072-pair split (step 8) are complete. Midterm presented. Best model: MLP trained on the full split, test ROC-AUC **0.791** [0.772, 0.808]. Next: final MLP tuning with several seeds, then the Streamlit app.
 
 ## Motivation
 - Out-of-context reuse is one of the cheapest and most common forms of visual misinformation. Because the image is authentic, reverse image search and manipulation detectors often fail to flag it.
@@ -24,6 +24,7 @@ Staged models, all on frozen CLIP ViT-B/32 embeddings (512-d, L2-normalised):
 1. **Similarity baseline:** predict "falsified" when cosine(image, caption) is at or below a threshold chosen on validation (0.2811).
 2. **Logistic regression:** features `[img, txt, img*txt, |img-txt|, cosine]` (2,049-d), then StandardScaler and L2 logistic regression. C is tuned on validation ROC-AUC (best C = 0.0003).
 3. **MLP (first draft):** the same features, 2049 -> 512 -> 128 -> 1, ReLU, dropout 0.3 (input dropout 0.1), AdamW, early stopping on validation AUC.
+4. **Full training split (step 8):** logistic regression and a regularized MLP (2049 -> 256 -> 1, dropout 0.5, input dropout 0.2, weight decay 0.05) trained on all 71,072 `merged_balanced` training pairs and tuned on the full 7,024-pair validation split. They are tested on the **same 2,400 curated test pairs** as models 1 to 3, so all numbers compare directly.
 
 Evaluation: test ROC-AUC, accuracy, and F1 (decision threshold chosen on validation), **overall and per mismatch method**. 95% percentile bootstrap CIs use 1,000 resamples with a fixed seed. A **paired bootstrap** of the AUC difference against the baseline is computed on identical resampled test rows.
 
@@ -56,8 +57,30 @@ The CIs for accuracy and F1 are in `outputs/metrics/results.json`.
 ![Test ROC-AUC per method](outputs/figures/fig_auc_models_by_method.png)
 ![ROC curves per method](outputs/figures/fig_roc_models_by_method.png)
 
+### Full training split (step 8): 71,072 training pairs instead of 19,200
+Same 2,400 curated test pairs. ROC-AUC [95% bootstrap CI]; paired deltas on identical resampled rows.
+
+| Mismatch method | LogReg, 19.2k subset | LogReg, full 71k | **MLP, full 71k** | MLP minus full LogReg (paired) |
+|---|---|---|---|---|
+| **All methods** | 0.751 | 0.763 [0.745, 0.780] | **0.791** [0.772, 0.808] | **+0.028** [+0.017, +0.040] |
+| Person, SBERT text-text | 0.706 | 0.719 [0.678, 0.758] | 0.749 [0.711, 0.785] | +0.031 [+0.006, +0.054] |
+| Scene, ResNet place | 0.765 | 0.783 [0.746, 0.819] | 0.787 [0.745, 0.822] | +0.004 [-0.018, +0.025] |
+| Semantic, CLIP text-image | 0.567 | 0.567 [0.520, 0.612] | 0.653 [0.607, 0.695] | +0.086 [+0.050, +0.120] |
+| Semantic, CLIP text-text | 0.919 | 0.923 [0.899, 0.943] | 0.926 [0.907, 0.945] | +0.003 [-0.009, +0.016] |
+
+- MLP, full split vs. cosine baseline: +0.075 [+0.058, +0.093]. Accuracy 0.708, F1 0.703. On the full official test split (7,264 pairs): 0.794 [0.784, 0.804].
+- Full-data logistic regression vs. the subset model: +0.011 [+0.005, +0.018].
+- **Learning curve** (logistic regression, C re-tuned each time): test AUC 0.741 / 0.751 / 0.758 / 0.763 at 7.1k / 19.2k / 35.5k / 71.1k pairs. The linear model is leveling off; the MLP gains most from the extra data.
+- MLP selection on validation AUC: draft settings 0.782, smaller net with stronger regularization **0.788** (selected, 0.5M parameters, best epoch 12), wide net with stronger regularization 0.784. It still overfits (train AUC 0.90 at the best epoch).
+- **Calibration:** expected calibration error 0.022 (MLP) and 0.023 (LogReg) on the curated test set.
+- **Error analysis:** 87 of 2,400 test pairs (3.6%) are confident mistakes (P > 0.8 and wrong): person 28, CLIP text-image 27, scene 23, CLIP text-text 9. The most confident missed fakes are captions naming a specific person or place that fits the kind of scene shown. Examples are in `results.json` under `full_split.error_analysis`.
+
+![Subset vs. full split](outputs/figures/fig_auc_full_vs_subset.png)
+![Learning curve](outputs/figures/fig_learning_curve.png)
+![Calibration](outputs/figures/fig_calibration.png)
+
 ### Known caveat: `semantics_clip_text_image` is adversarial by construction
-This subset pairs captions with images that **CLIP itself** rated as similar. A CLIP-similarity threshold therefore scores *below chance* there (AUC 0.458): falsified pairs have a slightly *higher* mean cosine (0.300 vs. 0.295). Trained classifiers recover part of the gap (0.57 to 0.59), but this subset remains the hardest. It is reported as a per-method finding, not a bug.
+This subset pairs captions with images that **CLIP itself** rated as similar. A CLIP-similarity threshold therefore scores *below chance* there (AUC 0.458): falsified pairs have a slightly *higher* mean cosine (0.300 vs. 0.295). Trained classifiers recover part of the gap (0.57 to 0.59 on the subset, 0.65 for the full-split MLP), but this subset remains the hardest. It is reported as a per-method finding, not a bug.
 
 ### Embedding reproduction: can the app recompute the training embeddings?
 I computed my own CLIP ViT-B/32 embeddings (`openai/clip-vit-base-patch32`, Hugging Face Transformers) for 2,641 VisualNews images and their captions. Agreement with the provided embeddings:
@@ -88,11 +111,12 @@ PCA and t-SNE of 2,000 test pairs show **no** genuine/falsified separation in 2-
 │   ├── 05_logistic_regression.py      logistic regression + bootstrap CIs + paired delta vs. baseline
 │   ├── 06_embedding_preprocessing.py  preprocessing/device/precision variants vs. provided embeddings
 │   ├── 07_mlp.py                      first-draft MLP + bootstrap CIs
+│   ├── 08_full_split.py               full 71k training split: learning curve, regularized MLP, calibration, error analysis
 │   └── common.py                      shared loading, features, bootstrap evaluation, plots
 ├── outputs/
 │   ├── figures/                       all charts
 │   ├── metrics/                       results.json (every reported number), data_summary.json
-│   └── models/                        logreg.joblib, mlp.pt (small trained classifiers)
+│   └── models/                        logreg.joblib, mlp.pt, logreg_full.joblib, mlp_full.pt
 ├── docs/
 │   ├── RUNLOG.md                      commands, run times, library versions
 │   ├── BLOCKERS.md                    blockers and how they were solved
@@ -116,6 +140,7 @@ python src/02_prep_data.py                     # curated subset -> data/curated/
 python src/03_baseline_similarity.py           # baseline + figures
 python src/05_logistic_regression.py           # logistic regression (~25 s)
 python src/07_mlp.py                           # MLP draft (~40 s, CPU); needs step 5's model for the comparison
+python src/08_full_split.py                     # full training split (~6 min, CPU); first run exports data/full_export/
 
 # Embedding experiments (need part of the VisualNews archive, ~1.5 GiB)
 mkdir -p data/visualnews_partial
@@ -133,8 +158,8 @@ All numbers are written to `outputs/metrics/results.json`. Run times and version
 | 4 | Exploratory embedding analysis | Done |
 | 5 | Similarity-threshold baseline | Done |
 | 6 | Per-method visualizations | Done |
-| 7 | Midterm progress report; logistic regression; embedding-gap diagnosis | Done |
-| 8 to 9 | Neural network (draft done; tuning, per-method gap analysis) | In progress |
+| 7 | Midterm presentation; logistic regression; embedding-gap diagnosis | Done |
+| 8 to 9 | Neural network on the full split, per-method gap analysis, calibration, error analysis | Mostly done (final seed check left) |
 | 10 | Optional: COSMOS generalization check | |
 | 11 | Streamlit app (image upload + caption, preset examples, score with explanation) | |
 | 12 to 14 | Report, slides, poster, final presentation | |
@@ -143,7 +168,7 @@ All numbers are written to `outputs/metrics/results.json`. Run times and version
 - [Project proposal](docs/reports/DATA5500_Proposal_Mohamed.pdf)
 - [Project plan](docs/reports/DATA5500_ProjectPlan_Mohamed.pdf)
 - Design document: [v1](docs/reports/DATA5500_DesignDocument_Mohamed_v1.pdf), [v2](docs/reports/DATA5500_DesignDocument_Mohamed_v2.pdf)
-- Progress reports: [2](docs/reports/DATA5500_ProgressReport2_Mohamed.pdf), [3](docs/reports/DATA5500_ProgressReport3_Mohamed.pdf)
+- Progress reports: [2](docs/reports/DATA5500_ProgressReport2_Mohamed.pdf), [3](docs/reports/DATA5500_ProgressReport3_Mohamed.pdf), [4](docs/reports/DATA5500_ProgressReport4_Mohamed.pdf)
 - [Run log](docs/RUNLOG.md), [blocker log](docs/BLOCKERS.md)
 
 ## References
