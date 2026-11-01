@@ -1323,5 +1323,1695 @@
    ]
   },
   "seconds": 202.9397
+ },
+ "full_split": {
+  "data": {
+   "train_full": 71072,
+   "val_full": 7024,
+   "test_full": 7264,
+   "test_curated": 2400,
+   "embeddings": "provided CLIP ViT-B/32, stored float16, L2-normalised"
+  },
+  "logreg_subset_reference": {
+   "C": 0.0003,
+   "test": {
+    "all": {
+     "n": 2400,
+     "roc_auc": 0.7513,
+     "accuracy": 0.68,
+     "f1": 0.6873,
+     "roc_auc_ci95": [
+      0.733,
+      0.7693
+     ],
+     "accuracy_ci95": [
+      0.6621,
+      0.6983
+     ],
+     "f1_ci95": [
+      0.6675,
+      0.7075
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0357,
+      "ci95": [
+       0.0231,
+       0.0498
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "person_sbert_text_text": {
+     "n": 600,
+     "roc_auc": 0.7064,
+     "accuracy": 0.6533,
+     "f1": 0.6498,
+     "roc_auc_ci95": [
+      0.6666,
+      0.7459
+     ],
+     "accuracy_ci95": [
+      0.6133,
+      0.6917
+     ],
+     "f1_ci95": [
+      0.6,
+      0.6932
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0012,
+      "ci95": [
+       -0.0256,
+       0.0265
+      ],
+      "p_le_0": 0.488
+     }
+    },
+    "scene_resnet_place": {
+     "n": 600,
+     "roc_auc": 0.7651,
+     "accuracy": 0.6817,
+     "f1": 0.6944,
+     "roc_auc_ci95": [
+      0.7282,
+      0.8015
+     ],
+     "accuracy_ci95": [
+      0.6433,
+      0.72
+     ],
+     "f1_ci95": [
+      0.6512,
+      0.735
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0211,
+      "ci95": [
+       -0.0054,
+       0.0465
+      ],
+      "p_le_0": 0.061
+     }
+    },
+    "semantics_clip_text_image": {
+     "n": 600,
+     "roc_auc": 0.5673,
+     "accuracy": 0.5517,
+     "f1": 0.5568,
+     "roc_auc_ci95": [
+      0.521,
+      0.6133
+     ],
+     "accuracy_ci95": [
+      0.5117,
+      0.5917
+     ],
+     "f1_ci95": [
+      0.5083,
+      0.606
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.1093,
+      "ci95": [
+       0.0688,
+       0.1478
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "semantics_clip_text_text": {
+     "n": 600,
+     "roc_auc": 0.9191,
+     "accuracy": 0.8333,
+     "f1": 0.8413,
+     "roc_auc_ci95": [
+      0.8964,
+      0.9405
+     ],
+     "accuracy_ci95": [
+      0.8033,
+      0.8633
+     ],
+     "f1_ci95": [
+      0.8084,
+      0.8697
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.009,
+      "ci95": [
+       -0.0091,
+       0.0283
+      ],
+      "p_le_0": 0.166
+     }
+    }
+   }
+  },
+  "learning_curve_logreg": [
+   {
+    "fraction": 0.1,
+    "n_train": 7104,
+    "best_C": 0.0001,
+    "train_auc": 0.7753,
+    "val_auc": 0.7351,
+    "curated_test_auc": 0.7409,
+    "c_sweep": {
+     "0.0001": {
+      "val_auc": 0.7351,
+      "train_auc": 0.7753
+     },
+     "0.0003": {
+      "val_auc": 0.7349,
+      "train_auc": 0.7976
+     },
+     "0.001": {
+      "val_auc": 0.727,
+      "train_auc": 0.8226
+     },
+     "0.003": {
+      "val_auc": 0.7156,
+      "train_auc": 0.8409
+     },
+     "0.01": {
+      "val_auc": 0.7032,
+      "train_auc": 0.8534
+     }
+    }
+   },
+   {
+    "fraction": 0.27,
+    "n_train": 19192,
+    "best_C": 0.0003,
+    "train_auc": 0.7811,
+    "val_auc": 0.7472,
+    "curated_test_auc": 0.7513,
+    "c_sweep": {
+     "0.0001": {
+      "val_auc": 0.7459,
+      "train_auc": 0.7688
+     },
+     "0.0003": {
+      "val_auc": 0.7472,
+      "train_auc": 0.7811
+     },
+     "0.001": {
+      "val_auc": 0.7443,
+      "train_auc": 0.7909
+     },
+     "0.003": {
+      "val_auc": 0.7404,
+      "train_auc": 0.7957
+     },
+     "0.01": {
+      "val_auc": 0.7369,
+      "train_auc": 0.7978
+     }
+    }
+   },
+   {
+    "fraction": 0.5,
+    "n_train": 35536,
+    "best_C": 0.0003,
+    "train_auc": 0.7719,
+    "val_auc": 0.7528,
+    "curated_test_auc": 0.7582,
+    "c_sweep": {
+     "0.0001": {
+      "val_auc": 0.7515,
+      "train_auc": 0.7636
+     },
+     "0.0003": {
+      "val_auc": 0.7528,
+      "train_auc": 0.7719
+     },
+     "0.001": {
+      "val_auc": 0.7512,
+      "train_auc": 0.7774
+     },
+     "0.003": {
+      "val_auc": 0.7491,
+      "train_auc": 0.7798
+     },
+     "0.01": {
+      "val_auc": 0.7475,
+      "train_auc": 0.7807
+     }
+    }
+   },
+   {
+    "fraction": 1.0,
+    "n_train": 71072,
+    "best_C": 0.0003,
+    "train_auc": 0.7687,
+    "val_auc": 0.7555,
+    "curated_test_auc": 0.7626,
+    "c_sweep": {
+     "0.0001": {
+      "val_auc": 0.7545,
+      "train_auc": 0.7637
+     },
+     "0.0003": {
+      "val_auc": 0.7555,
+      "train_auc": 0.7687
+     },
+     "0.001": {
+      "val_auc": 0.755,
+      "train_auc": 0.7715
+     },
+     "0.003": {
+      "val_auc": 0.7543,
+      "train_auc": 0.7724
+     },
+     "0.01": {
+      "val_auc": 0.7537,
+      "train_auc": 0.7727
+     }
+    }
+   }
+  ],
+  "logreg_full": {
+   "best_C": 0.0003,
+   "val_roc_auc": 0.7555,
+   "decision_threshold_prob": 0.4317,
+   "test": {
+    "all": {
+     "n": 2400,
+     "roc_auc": 0.7626,
+     "accuracy": 0.6871,
+     "f1": 0.7088,
+     "roc_auc_ci95": [
+      0.7447,
+      0.7799
+     ],
+     "accuracy_ci95": [
+      0.6696,
+      0.7046
+     ],
+     "f1_ci95": [
+      0.6887,
+      0.7285
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.047,
+      "ci95": [
+       0.0342,
+       0.0617
+      ],
+      "p_le_0": 0.0
+     },
+     "auc_minus_logreg_subset": {
+      "delta": 0.0113,
+      "ci95": [
+       0.0052,
+       0.0179
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "person_sbert_text_text": {
+     "n": 600,
+     "roc_auc": 0.7188,
+     "accuracy": 0.645,
+     "f1": 0.6624,
+     "roc_auc_ci95": [
+      0.6785,
+      0.7577
+     ],
+     "accuracy_ci95": [
+      0.605,
+      0.6833
+     ],
+     "f1_ci95": [
+      0.617,
+      0.7034
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0136,
+      "ci95": [
+       -0.0144,
+       0.0417
+      ],
+      "p_le_0": 0.194
+     },
+     "auc_minus_logreg_subset": {
+      "delta": 0.0124,
+      "ci95": [
+       -0.001,
+       0.0261
+      ],
+      "p_le_0": 0.039
+     }
+    },
+    "scene_resnet_place": {
+     "n": 600,
+     "roc_auc": 0.7832,
+     "accuracy": 0.6867,
+     "f1": 0.7143,
+     "roc_auc_ci95": [
+      0.7456,
+      0.8193
+     ],
+     "accuracy_ci95": [
+      0.6483,
+      0.7233
+     ],
+     "f1_ci95": [
+      0.6748,
+      0.7504
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0391,
+      "ci95": [
+       0.014,
+       0.0625
+      ],
+      "p_le_0": 0.0
+     },
+     "auc_minus_logreg_subset": {
+      "delta": 0.0181,
+      "ci95": [
+       0.0055,
+       0.0313
+      ],
+      "p_le_0": 0.004
+     }
+    },
+    "semantics_clip_text_image": {
+     "n": 600,
+     "roc_auc": 0.5673,
+     "accuracy": 0.565,
+     "f1": 0.6027,
+     "roc_auc_ci95": [
+      0.5201,
+      0.6119
+     ],
+     "accuracy_ci95": [
+      0.5233,
+      0.6033
+     ],
+     "f1_ci95": [
+      0.5569,
+      0.645
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.1093,
+      "ci95": [
+       0.0675,
+       0.1491
+      ],
+      "p_le_0": 0.0
+     },
+     "auc_minus_logreg_subset": {
+      "delta": -0.0,
+      "ci95": [
+       -0.0185,
+       0.0185
+      ],
+      "p_le_0": 0.522
+     }
+    },
+    "semantics_clip_text_text": {
+     "n": 600,
+     "roc_auc": 0.9229,
+     "accuracy": 0.8517,
+     "f1": 0.8594,
+     "roc_auc_ci95": [
+      0.8987,
+      0.9431
+     ],
+     "accuracy_ci95": [
+      0.825,
+      0.8784
+     ],
+     "f1_ci95": [
+      0.8293,
+      0.8872
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0127,
+      "ci95": [
+       -0.0049,
+       0.0318
+      ],
+      "p_le_0": 0.081
+     },
+     "auc_minus_logreg_subset": {
+      "delta": 0.0037,
+      "ci95": [
+       -0.0038,
+       0.0112
+      ],
+      "p_le_0": 0.166
+     }
+    }
+   }
+  },
+  "mlp_full": {
+   "runs": {
+    "draft_config": {
+     "config": {
+      "hidden": [
+       512,
+       128
+      ],
+      "dropout": 0.3,
+      "input_dropout": 0.1,
+      "weight_decay": 0.01,
+      "lr": 0.001,
+      "batch_size": 256,
+      "max_epochs": 60,
+      "patience": 8
+     },
+     "best_epoch": 4,
+     "epochs_run": 12,
+     "val_auc": 0.7823,
+     "train_auc_at_best": 0.8696,
+     "n_params": 1115393,
+     "history": [
+      {
+       "epoch": 1,
+       "train_auc": 0.795,
+       "val_auc": 0.7659
+      },
+      {
+       "epoch": 2,
+       "train_auc": 0.8243,
+       "val_auc": 0.7751
+      },
+      {
+       "epoch": 3,
+       "train_auc": 0.8495,
+       "val_auc": 0.779
+      },
+      {
+       "epoch": 4,
+       "train_auc": 0.8696,
+       "val_auc": 0.7823
+      },
+      {
+       "epoch": 5,
+       "train_auc": 0.9029,
+       "val_auc": 0.7818
+      },
+      {
+       "epoch": 6,
+       "train_auc": 0.9257,
+       "val_auc": 0.7778
+      },
+      {
+       "epoch": 7,
+       "train_auc": 0.9392,
+       "val_auc": 0.7763
+      },
+      {
+       "epoch": 8,
+       "train_auc": 0.9559,
+       "val_auc": 0.7733
+      },
+      {
+       "epoch": 9,
+       "train_auc": 0.9641,
+       "val_auc": 0.7761
+      },
+      {
+       "epoch": 10,
+       "train_auc": 0.9692,
+       "val_auc": 0.7771
+      },
+      {
+       "epoch": 11,
+       "train_auc": 0.976,
+       "val_auc": 0.7733
+      },
+      {
+       "epoch": 12,
+       "train_auc": 0.9787,
+       "val_auc": 0.7707
+      }
+     ]
+    },
+    "small_strong_reg": {
+     "config": {
+      "hidden": [
+       256
+      ],
+      "dropout": 0.5,
+      "input_dropout": 0.2,
+      "weight_decay": 0.05,
+      "lr": 0.001,
+      "batch_size": 256,
+      "max_epochs": 60,
+      "patience": 8
+     },
+     "best_epoch": 12,
+     "epochs_run": 20,
+     "val_auc": 0.7877,
+     "train_auc_at_best": 0.9029,
+     "n_params": 525057,
+     "history": [
+      {
+       "epoch": 1,
+       "train_auc": 0.7824,
+       "val_auc": 0.7605
+      },
+      {
+       "epoch": 2,
+       "train_auc": 0.7972,
+       "val_auc": 0.7665
+      },
+      {
+       "epoch": 3,
+       "train_auc": 0.8073,
+       "val_auc": 0.7682
+      },
+      {
+       "epoch": 4,
+       "train_auc": 0.8186,
+       "val_auc": 0.7709
+      },
+      {
+       "epoch": 5,
+       "train_auc": 0.8316,
+       "val_auc": 0.7781
+      },
+      {
+       "epoch": 6,
+       "train_auc": 0.8398,
+       "val_auc": 0.781
+      },
+      {
+       "epoch": 7,
+       "train_auc": 0.852,
+       "val_auc": 0.7804
+      },
+      {
+       "epoch": 8,
+       "train_auc": 0.8645,
+       "val_auc": 0.7835
+      },
+      {
+       "epoch": 9,
+       "train_auc": 0.8721,
+       "val_auc": 0.783
+      },
+      {
+       "epoch": 10,
+       "train_auc": 0.8855,
+       "val_auc": 0.7832
+      },
+      {
+       "epoch": 11,
+       "train_auc": 0.8892,
+       "val_auc": 0.7832
+      },
+      {
+       "epoch": 12,
+       "train_auc": 0.9029,
+       "val_auc": 0.7877
+      },
+      {
+       "epoch": 13,
+       "train_auc": 0.9077,
+       "val_auc": 0.7839
+      },
+      {
+       "epoch": 14,
+       "train_auc": 0.9184,
+       "val_auc": 0.7847
+      },
+      {
+       "epoch": 15,
+       "train_auc": 0.9224,
+       "val_auc": 0.7849
+      },
+      {
+       "epoch": 16,
+       "train_auc": 0.9341,
+       "val_auc": 0.7859
+      },
+      {
+       "epoch": 17,
+       "train_auc": 0.9409,
+       "val_auc": 0.7851
+      },
+      {
+       "epoch": 18,
+       "train_auc": 0.9434,
+       "val_auc": 0.7828
+      },
+      {
+       "epoch": 19,
+       "train_auc": 0.9496,
+       "val_auc": 0.7857
+      },
+      {
+       "epoch": 20,
+       "train_auc": 0.9568,
+       "val_auc": 0.7867
+      }
+     ]
+    },
+    "wide_strong_reg": {
+     "config": {
+      "hidden": [
+       512,
+       128
+      ],
+      "dropout": 0.5,
+      "input_dropout": 0.2,
+      "weight_decay": 0.05,
+      "lr": 0.001,
+      "batch_size": 256,
+      "max_epochs": 60,
+      "patience": 8
+     },
+     "best_epoch": 14,
+     "epochs_run": 22,
+     "val_auc": 0.7838,
+     "train_auc_at_best": 0.9191,
+     "n_params": 1115393,
+     "history": [
+      {
+       "epoch": 1,
+       "train_auc": 0.7846,
+       "val_auc": 0.7616
+      },
+      {
+       "epoch": 2,
+       "train_auc": 0.7969,
+       "val_auc": 0.7658
+      },
+      {
+       "epoch": 3,
+       "train_auc": 0.8086,
+       "val_auc": 0.7693
+      },
+      {
+       "epoch": 4,
+       "train_auc": 0.8211,
+       "val_auc": 0.773
+      },
+      {
+       "epoch": 5,
+       "train_auc": 0.8347,
+       "val_auc": 0.7727
+      },
+      {
+       "epoch": 6,
+       "train_auc": 0.8449,
+       "val_auc": 0.7785
+      },
+      {
+       "epoch": 7,
+       "train_auc": 0.855,
+       "val_auc": 0.7776
+      },
+      {
+       "epoch": 8,
+       "train_auc": 0.8682,
+       "val_auc": 0.7792
+      },
+      {
+       "epoch": 9,
+       "train_auc": 0.8802,
+       "val_auc": 0.7817
+      },
+      {
+       "epoch": 10,
+       "train_auc": 0.8888,
+       "val_auc": 0.7817
+      },
+      {
+       "epoch": 11,
+       "train_auc": 0.8973,
+       "val_auc": 0.782
+      },
+      {
+       "epoch": 12,
+       "train_auc": 0.9034,
+       "val_auc": 0.7818
+      },
+      {
+       "epoch": 13,
+       "train_auc": 0.9146,
+       "val_auc": 0.7826
+      },
+      {
+       "epoch": 14,
+       "train_auc": 0.9191,
+       "val_auc": 0.7838
+      },
+      {
+       "epoch": 15,
+       "train_auc": 0.9261,
+       "val_auc": 0.7811
+      },
+      {
+       "epoch": 16,
+       "train_auc": 0.9324,
+       "val_auc": 0.7811
+      },
+      {
+       "epoch": 17,
+       "train_auc": 0.9394,
+       "val_auc": 0.781
+      },
+      {
+       "epoch": 18,
+       "train_auc": 0.943,
+       "val_auc": 0.7813
+      },
+      {
+       "epoch": 19,
+       "train_auc": 0.9457,
+       "val_auc": 0.7816
+      },
+      {
+       "epoch": 20,
+       "train_auc": 0.9508,
+       "val_auc": 0.7825
+      },
+      {
+       "epoch": 21,
+       "train_auc": 0.9541,
+       "val_auc": 0.7811
+      },
+      {
+       "epoch": 22,
+       "train_auc": 0.9574,
+       "val_auc": 0.7825
+      }
+     ]
+    }
+   },
+   "selected": "small_strong_reg",
+   "decision_threshold_prob": 0.4816,
+   "test": {
+    "all": {
+     "n": 2400,
+     "roc_auc": 0.7909,
+     "accuracy": 0.7083,
+     "f1": 0.7029,
+     "roc_auc_ci95": [
+      0.7723,
+      0.8076
+     ],
+     "accuracy_ci95": [
+      0.6896,
+      0.7254
+     ],
+     "f1_ci95": [
+      0.6814,
+      0.7228
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0753,
+      "ci95": [
+       0.0585,
+       0.0927
+      ],
+      "p_le_0": 0.0
+     },
+     "auc_minus_logreg_full": {
+      "delta": 0.0283,
+      "ci95": [
+       0.0173,
+       0.0399
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "person_sbert_text_text": {
+     "n": 600,
+     "roc_auc": 0.7495,
+     "accuracy": 0.675,
+     "f1": 0.6461,
+     "roc_auc_ci95": [
+      0.7107,
+      0.7853
+     ],
+     "accuracy_ci95": [
+      0.6367,
+      0.7117
+     ],
+     "f1_ci95": [
+      0.596,
+      0.6886
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0443,
+      "ci95": [
+       0.0116,
+       0.0774
+      ],
+      "p_le_0": 0.004
+     },
+     "auc_minus_logreg_full": {
+      "delta": 0.0307,
+      "ci95": [
+       0.0062,
+       0.0541
+      ],
+      "p_le_0": 0.009
+     }
+    },
+    "scene_resnet_place": {
+     "n": 600,
+     "roc_auc": 0.7872,
+     "accuracy": 0.6967,
+     "f1": 0.6884,
+     "roc_auc_ci95": [
+      0.7447,
+      0.8217
+     ],
+     "accuracy_ci95": [
+      0.655,
+      0.7317
+     ],
+     "f1_ci95": [
+      0.6379,
+      0.7282
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0432,
+      "ci95": [
+       0.0131,
+       0.0741
+      ],
+      "p_le_0": 0.004
+     },
+     "auc_minus_logreg_full": {
+      "delta": 0.0041,
+      "ci95": [
+       -0.0176,
+       0.025
+      ],
+      "p_le_0": 0.371
+     }
+    },
+    "semantics_clip_text_image": {
+     "n": 600,
+     "roc_auc": 0.6534,
+     "accuracy": 0.6183,
+     "f1": 0.624,
+     "roc_auc_ci95": [
+      0.607,
+      0.6951
+     ],
+     "accuracy_ci95": [
+      0.5783,
+      0.655
+     ],
+     "f1_ci95": [
+      0.5774,
+      0.6677
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.1953,
+      "ci95": [
+       0.1475,
+       0.2349
+      ],
+      "p_le_0": 0.0
+     },
+     "auc_minus_logreg_full": {
+      "delta": 0.0861,
+      "ci95": [
+       0.0503,
+       0.1197
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "semantics_clip_text_text": {
+     "n": 600,
+     "roc_auc": 0.9263,
+     "accuracy": 0.8433,
+     "f1": 0.8464,
+     "roc_auc_ci95": [
+      0.907,
+      0.9449
+     ],
+     "accuracy_ci95": [
+      0.815,
+      0.8717
+     ],
+     "f1_ci95": [
+      0.8158,
+      0.8766
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0161,
+      "ci95": [
+       -0.0026,
+       0.0363
+      ],
+      "p_le_0": 0.044
+     },
+     "auc_minus_logreg_full": {
+      "delta": 0.0034,
+      "ci95": [
+       -0.0087,
+       0.0163
+      ],
+      "p_le_0": 0.281
+     }
+    }
+   }
+  },
+  "full_test_split": {
+   "logreg_full": {
+    "all": {
+     "n": 7264,
+     "roc_auc": 0.7645,
+     "accuracy": 0.6852,
+     "f1": 0.7077,
+     "roc_auc_ci95": [
+      0.7532,
+      0.7757
+     ],
+     "accuracy_ci95": [
+      0.6743,
+      0.6959
+     ],
+     "f1_ci95": [
+      0.6955,
+      0.7184
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0448,
+      "ci95": [
+       0.0365,
+       0.0528
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "person_sbert_text_text": {
+     "n": 1816,
+     "roc_auc": 0.7153,
+     "accuracy": 0.6415,
+     "f1": 0.6656,
+     "roc_auc_ci95": [
+      0.6909,
+      0.739
+     ],
+     "accuracy_ci95": [
+      0.6195,
+      0.6647
+     ],
+     "f1_ci95": [
+      0.6421,
+      0.6901
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0283,
+      "ci95": [
+       0.0132,
+       0.0461
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "scene_resnet_place": {
+     "n": 1816,
+     "roc_auc": 0.7959,
+     "accuracy": 0.7032,
+     "f1": 0.7232,
+     "roc_auc_ci95": [
+      0.7753,
+      0.8173
+     ],
+     "accuracy_ci95": [
+      0.6812,
+      0.7258
+     ],
+     "f1_ci95": [
+      0.6994,
+      0.746
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0335,
+      "ci95": [
+       0.0196,
+       0.0482
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "semantics_clip_text_image": {
+     "n": 1816,
+     "roc_auc": 0.5703,
+     "accuracy": 0.5677,
+     "f1": 0.6033,
+     "roc_auc_ci95": [
+      0.5457,
+      0.5975
+     ],
+     "accuracy_ci95": [
+      0.5446,
+      0.5903
+     ],
+     "f1_ci95": [
+      0.5773,
+      0.628
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.094,
+      "ci95": [
+       0.072,
+       0.1182
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "semantics_clip_text_text": {
+     "n": 1816,
+     "roc_auc": 0.9179,
+     "accuracy": 0.8282,
+     "f1": 0.84,
+     "roc_auc_ci95": [
+      0.905,
+      0.9312
+     ],
+     "accuracy_ci95": [
+      0.8106,
+      0.8464
+     ],
+     "f1_ci95": [
+      0.8218,
+      0.8574
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.015,
+      "ci95": [
+       0.0047,
+       0.0255
+      ],
+      "p_le_0": 0.002
+     }
+    }
+   },
+   "mlp_full": {
+    "all": {
+     "n": 7264,
+     "roc_auc": 0.7944,
+     "accuracy": 0.7139,
+     "f1": 0.7076,
+     "roc_auc_ci95": [
+      0.784,
+      0.8041
+     ],
+     "accuracy_ci95": [
+      0.7022,
+      0.724
+     ],
+     "f1_ci95": [
+      0.6959,
+      0.719
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0747,
+      "ci95": [
+       0.0656,
+       0.0836
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "person_sbert_text_text": {
+     "n": 1816,
+     "roc_auc": 0.7441,
+     "accuracy": 0.6856,
+     "f1": 0.6674,
+     "roc_auc_ci95": [
+      0.7221,
+      0.7668
+     ],
+     "accuracy_ci95": [
+      0.6641,
+      0.7076
+     ],
+     "f1_ci95": [
+      0.6416,
+      0.6927
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0571,
+      "ci95": [
+       0.0391,
+       0.0762
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "scene_resnet_place": {
+     "n": 1816,
+     "roc_auc": 0.8034,
+     "accuracy": 0.7219,
+     "f1": 0.7132,
+     "roc_auc_ci95": [
+      0.7824,
+      0.8235
+     ],
+     "accuracy_ci95": [
+      0.7004,
+      0.7423
+     ],
+     "f1_ci95": [
+      0.6882,
+      0.7374
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0411,
+      "ci95": [
+       0.0245,
+       0.0589
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "semantics_clip_text_image": {
+     "n": 1816,
+     "roc_auc": 0.6551,
+     "accuracy": 0.6134,
+     "f1": 0.6104,
+     "roc_auc_ci95": [
+      0.6322,
+      0.68
+     ],
+     "accuracy_ci95": [
+      0.5925,
+      0.636
+     ],
+     "f1_ci95": [
+      0.5828,
+      0.6361
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.1788,
+      "ci95": [
+       0.1523,
+       0.2062
+      ],
+      "p_le_0": 0.0
+     }
+    },
+    "semantics_clip_text_text": {
+     "n": 1816,
+     "roc_auc": 0.9243,
+     "accuracy": 0.8348,
+     "f1": 0.8357,
+     "roc_auc_ci95": [
+      0.912,
+      0.9355
+     ],
+     "accuracy_ci95": [
+      0.8172,
+      0.8524
+     ],
+     "f1_ci95": [
+      0.817,
+      0.8537
+     ],
+     "auc_minus_baseline": {
+      "delta": 0.0214,
+      "ci95": [
+       0.0096,
+       0.0322
+      ],
+      "p_le_0": 0.0
+     }
+    }
+   }
+  },
+  "calibration_curated_test": {
+   "logreg_full": {
+    "ece": 0.0228,
+    "bins": [
+     {
+      "bin": 0,
+      "n": 19,
+      "mean_pred": 0.0754,
+      "frac_falsified": 0.0526
+     },
+     {
+      "bin": 1,
+      "n": 151,
+      "mean_pred": 0.1587,
+      "frac_falsified": 0.0927
+     },
+     {
+      "bin": 2,
+      "n": 302,
+      "mean_pred": 0.2527,
+      "frac_falsified": 0.2583
+     },
+     {
+      "bin": 3,
+      "n": 413,
+      "mean_pred": 0.3512,
+      "frac_falsified": 0.3172
+     },
+     {
+      "bin": 4,
+      "n": 416,
+      "mean_pred": 0.4491,
+      "frac_falsified": 0.4808
+     },
+     {
+      "bin": 5,
+      "n": 340,
+      "mean_pred": 0.5484,
+      "frac_falsified": 0.5588
+     },
+     {
+      "bin": 6,
+      "n": 275,
+      "mean_pred": 0.6471,
+      "frac_falsified": 0.6655
+     },
+     {
+      "bin": 7,
+      "n": 222,
+      "mean_pred": 0.7521,
+      "frac_falsified": 0.7523
+     },
+     {
+      "bin": 8,
+      "n": 171,
+      "mean_pred": 0.8438,
+      "frac_falsified": 0.8772
+     },
+     {
+      "bin": 9,
+      "n": 91,
+      "mean_pred": 0.9341,
+      "frac_falsified": 0.9451
+     }
+    ]
+   },
+   "mlp_full": {
+    "ece": 0.0224,
+    "bins": [
+     {
+      "bin": 0,
+      "n": 202,
+      "mean_pred": 0.0563,
+      "frac_falsified": 0.1139
+     },
+     {
+      "bin": 1,
+      "n": 216,
+      "mean_pred": 0.1498,
+      "frac_falsified": 0.1667
+     },
+     {
+      "bin": 2,
+      "n": 248,
+      "mean_pred": 0.2503,
+      "frac_falsified": 0.2944
+     },
+     {
+      "bin": 3,
+      "n": 307,
+      "mean_pred": 0.3524,
+      "frac_falsified": 0.3746
+     },
+     {
+      "bin": 4,
+      "n": 314,
+      "mean_pred": 0.4466,
+      "frac_falsified": 0.4682
+     },
+     {
+      "bin": 5,
+      "n": 297,
+      "mean_pred": 0.5499,
+      "frac_falsified": 0.5455
+     },
+     {
+      "bin": 6,
+      "n": 262,
+      "mean_pred": 0.6456,
+      "frac_falsified": 0.626
+     },
+     {
+      "bin": 7,
+      "n": 189,
+      "mean_pred": 0.7504,
+      "frac_falsified": 0.7566
+     },
+     {
+      "bin": 8,
+      "n": 168,
+      "mean_pred": 0.8484,
+      "frac_falsified": 0.8512
+     },
+     {
+      "bin": 9,
+      "n": 197,
+      "mean_pred": 0.9547,
+      "frac_falsified": 0.9848
+     }
+    ]
+   }
+  },
+  "error_analysis": {
+   "model": "mlp_full",
+   "person_sbert_text_text": {
+    "n": 600,
+    "missed_fakes": 122,
+    "false_alarms": 73,
+    "confident_errors_p_gt_0.8_or_lt_0.2": 28,
+    "most_confident_missed_fakes": [
+     {
+      "p_falsified": 0.017,
+      "caption": "Nicky Henderson with Sprinter Sacre during an open day at his Seven Barrows stables in February 2013",
+      "image_path": "visual_news/origin/guardian/images/0645/112.jpg"
+     },
+     {
+      "p_falsified": 0.041,
+      "caption": "Ansel Elgort and Shailene Woodley in a scene from the motion picture The Fault in Our Stars Credit James Bridges 20th Century Fox",
+      "image_path": "visual_news/origin/usa_today/images/0365/742.jpg"
+     },
+     {
+      "p_falsified": 0.045,
+      "caption": "David Cameron leaves the high court in London on 14 June 2012 after giving evidence at the Leveson inquiry into media ethics",
+      "image_path": "visual_news/origin/guardian/images/0837/822.jpg"
+     },
+     {
+      "p_falsified": 0.057,
+      "caption": "Gordon Brown delivers his keynote speech at the Labour conference today",
+      "image_path": "visual_news/origin/guardian/images/0435/924.jpg"
+     },
+     {
+      "p_falsified": 0.066,
+      "caption": "Peaches Geldof and Thomas Cohen",
+      "image_path": "visual_news/origin/usa_today/images/0172/815.jpg"
+     }
+    ],
+    "most_confident_false_alarms": [
+     {
+      "p_falsified": 0.909,
+      "caption": "The prime minister Tony Abbott welcomed Harry s trip to Australia and said he would be joining him while he is here",
+      "image_path": "visual_news/origin/guardian/images/0519/569.jpg"
+     },
+     {
+      "p_falsified": 0.881,
+      "caption": "Eddie Murphy as Saul in Coming to America",
+      "image_path": "visual_news/origin/guardian/images/0501/231.jpg"
+     },
+     {
+      "p_falsified": 0.852,
+      "caption": "Prince Kate Moss Adele Rita Ora Noel Gallagher Cara Delevingne and Stephen Fry attended his Ronnie Scott s gig",
+      "image_path": "visual_news/origin/guardian/images/0389/584.jpg"
+     },
+     {
+      "p_falsified": 0.844,
+      "caption": "Rob Brydon and the support crew following Walliams into Windsor",
+      "image_path": "visual_news/origin/guardian/images/0337/451.jpg"
+     },
+     {
+      "p_falsified": 0.816,
+      "caption": "View Photo Gallery Seth MacFarlane Bill Bellamy Tori Spelling Estelle Cyndi Lauper Carole King and other celebrities",
+      "image_path": "visual_news/origin/washington_post/images/0550/948.jpg"
+     }
+    ]
+   },
+   "scene_resnet_place": {
+    "n": 600,
+    "missed_fakes": 99,
+    "false_alarms": 83,
+    "confident_errors_p_gt_0.8_or_lt_0.2": 23,
+    "most_confident_missed_fakes": [
+     {
+      "p_falsified": 0.08,
+      "caption": "An antigovernment protester waves a Thai national flag outside Parliament in Bangkok",
+      "image_path": "visual_news/origin/guardian/images/0589/635.jpg"
+     },
+     {
+      "p_falsified": 0.091,
+      "caption": "BBC drama village in Cardiff Bay artist s impression",
+      "image_path": "visual_news/origin/bbc/images/0206/759.jpg"
+     },
+     {
+      "p_falsified": 0.093,
+      "caption": "The S400 Russia s most advanced missile defence system will provide cover for its aircraft in Syria",
+      "image_path": "visual_news/origin/bbc/images/0407/825.jpg"
+     },
+     {
+      "p_falsified": 0.095,
+      "caption": "The execution chamber at the Oklahoma State Penitentiary in McAlester Okla where a highprofile botched lethal injection occurred this year",
+      "image_path": "visual_news/origin/usa_today/images/0520/601.jpg"
+     },
+     {
+      "p_falsified": 0.099,
+      "caption": "A Turkish man stands next to a bank window that was damaged during riots after antigovernment demonstrations on June 5 2013 in Istanbul Turkey",
+      "image_path": "visual_news/origin/guardian/images/0159/552.jpg"
+     }
+    ],
+    "most_confident_false_alarms": [
+     {
+      "p_falsified": 0.922,
+      "caption": "Family photo in front of a family home neighboring their own in Pike County Ohio as seen on Monday April 25 2016",
+      "image_path": "visual_news/origin/usa_today/images/0613/955.jpg"
+     },
+     {
+      "p_falsified": 0.88,
+      "caption": "A yellow hammer is a hightlight in the hedgerow Badbury Rings Dorset UK Taken by SteveJM2009",
+      "image_path": "visual_news/origin/guardian/images/0293/496.jpg"
+     },
+     {
+      "p_falsified": 0.877,
+      "caption": "Looming hulk the building towers over Parc de la Villette in the east of Paris",
+      "image_path": "visual_news/origin/guardian/images/0396/526.jpg"
+     },
+     {
+      "p_falsified": 0.859,
+      "caption": "A young male jaguar who was born on April 26 at San Diego California regards the outdoor area to which he is gradually being introduced",
+      "image_path": "visual_news/origin/guardian/images/0398/483.jpg"
+     },
+     {
+      "p_falsified": 0.843,
+      "caption": "A proposed pipeline to carry tar sands oil from Canada to the US has ignited protests on climate change grounds",
+      "image_path": "visual_news/origin/guardian/images/0817/228.jpg"
+     }
+    ]
+   },
+   "semantics_clip_text_image": {
+    "n": 600,
+    "missed_fakes": 110,
+    "false_alarms": 119,
+    "confident_errors_p_gt_0.8_or_lt_0.2": 27,
+    "most_confident_missed_fakes": [
+     {
+      "p_falsified": 0.061,
+      "caption": "Chicago Bulls Joakim Noah and Brooklyn Nets Mirza Teletovic chase down a loose ball",
+      "image_path": "visual_news/origin/usa_today/images/0637/960.jpg"
+     },
+     {
+      "p_falsified": 0.071,
+      "caption": "Trees covered in snow on the summit plateau of the Grosser Feldberg mountain the highest in the Taunus range in Hesse Germany",
+      "image_path": "visual_news/origin/usa_today/images/0673/586.jpg"
+     },
+     {
+      "p_falsified": 0.076,
+      "caption": "The island is part of La Maddalena archipelago which also includes Spargi",
+      "image_path": "visual_news/origin/guardian/images/0543/074.jpg"
+     },
+     {
+      "p_falsified": 0.082,
+      "caption": "Dahl s books like The Twits were illustrated by Quentin Blake",
+      "image_path": "visual_news/origin/guardian/images/0002/570.jpg"
+     },
+     {
+      "p_falsified": 0.096,
+      "caption": "Kylie Jenner attends the Manus x Machina Fashion In An Age Of Technology Costume Institute Gala at Metropolitan Museum of Art on May 2 in New York City",
+      "image_path": "visual_news/origin/guardian/images/0507/814.jpg"
+     }
+    ],
+    "most_confident_false_alarms": [
+     {
+      "p_falsified": 0.908,
+      "caption": "Coming back for more Bradford Bulls hero from their glory years James Lowes is now head coach as they bid for promotion from the Championship",
+      "image_path": "visual_news/origin/guardian/images/0316/331.jpg"
+     },
+     {
+      "p_falsified": 0.869,
+      "caption": "Jim Ed Brown center with the Cates Sisters performs for the Tennessee Press Association members at a luncheon with renditions of country music favorites Jan 19 1973",
+      "image_path": "visual_news/origin/usa_today/images/0546/763.jpg"
+     },
+     {
+      "p_falsified": 0.843,
+      "caption": "12 Years a Slave William Hague described Britain s role in the trade as shocking yet the UK is resisting reparation claims",
+      "image_path": "visual_news/origin/guardian/images/0250/272.jpg"
+     },
+     {
+      "p_falsified": 0.837,
+      "caption": "The Notebook actor was issued protection against Del Villar last November",
+      "image_path": "visual_news/origin/bbc/images/0499/675.jpg"
+     },
+     {
+      "p_falsified": 0.831,
+      "caption": "Trees covered in snow on the summit plateau of the Grosser Feldberg mountain the highest in the Taunus range in Hesse Germany",
+      "image_path": "visual_news/origin/guardian/images/0800/508.jpg"
+     }
+    ]
+   },
+   "semantics_clip_text_text": {
+    "n": 600,
+    "missed_fakes": 41,
+    "false_alarms": 53,
+    "confident_errors_p_gt_0.8_or_lt_0.2": 9,
+    "most_confident_missed_fakes": [
+     {
+      "p_falsified": 0.064,
+      "caption": "Falcons linebacker Paul Worrilow brings down Jaguars quarterback Blake Bortles for a sack during the first quarter in Jacksonville",
+      "image_path": "visual_news/origin/usa_today/images/0718/603.jpg"
+     },
+     {
+      "p_falsified": 0.098,
+      "caption": "Sen Brooke honorary chairman of the Massachusetts Republican State Convention is greeted by Popsicle a baby elephant upon arriving at the convention at John B Hynes Civic Auditorium in Boston",
+      "image_path": "visual_news/origin/usa_today/images/0606/598.jpg"
+     },
+     {
+      "p_falsified": 0.101,
+      "caption": "In this Jan 16 2013 photo concerned grandparent Sue Lile of Carmel Ind shows her opposition to Common Core standards during a rally at the State House rotunda in Indianapolis",
+      "image_path": "visual_news/origin/guardian/images/0427/447.jpg"
+     },
+     {
+      "p_falsified": 0.104,
+      "caption": "A satellite image showing three cyclones near Australia with Pam to the northeast",
+      "image_path": "visual_news/origin/usa_today/images/0564/145.jpg"
+     },
+     {
+      "p_falsified": 0.107,
+      "caption": "The Atlantic White Shark Conservancy was filming in Cape Cod when they saw this seal escape a shark attack by fighting back and swimming to safety Keri Lumm",
+      "image_path": "visual_news/origin/usa_today/images/0314/732.jpg"
+     }
+    ],
+    "most_confident_false_alarms": [
+     {
+      "p_falsified": 0.852,
+      "caption": "The duchess and her husband attended a St Patrick s Day Parade at Mons Barracks in Aldershot",
+      "image_path": "visual_news/origin/bbc/images/0006/511.jpg"
+     },
+     {
+      "p_falsified": 0.841,
+      "caption": "Patricia Millett was nominated to the powerful US Court of Appeals for the District of Columbia Circuit on June 4",
+      "image_path": "visual_news/origin/usa_today/images/0208/887.jpg"
+     },
+     {
+      "p_falsified": 0.825,
+      "caption": "Grave consequences Students experiment on themselves with disastrous consequences in VE Schwab s superhero thriller Vicious",
+      "image_path": "visual_news/origin/guardian/images/0828/391.jpg"
+     },
+     {
+      "p_falsified": 0.786,
+      "caption": "John and Yoko pose with Andy Peebles and an unidentified woman",
+      "image_path": "visual_news/origin/guardian/images/0055/587.jpg"
+     },
+     {
+      "p_falsified": 0.784,
+      "caption": "Midwife Mary Houldsworth has been working in an ebola zone in Liberia She is pictured at her home in Devon Photo by David HedgesSWNS",
+      "image_path": "visual_news/origin/guardian/images/0767/929.jpg"
+     }
+    ]
+   }
+  },
+  "baseline_same_bootstrap": {
+   "all": {
+    "n": 2400,
+    "roc_auc": 0.7156,
+    "accuracy": 0.6525,
+    "f1": 0.689,
+    "roc_auc_ci95": [
+     0.6958,
+     0.7332
+    ],
+    "accuracy_ci95": [
+     0.6338,
+     0.6692
+    ],
+    "f1_ci95": [
+     0.67,
+     0.7084
+    ]
+   },
+   "person_sbert_text_text": {
+    "n": 600,
+    "roc_auc": 0.7052,
+    "accuracy": 0.645,
+    "f1": 0.6581,
+    "roc_auc_ci95": [
+     0.6627,
+     0.7434
+    ],
+    "accuracy_ci95": [
+     0.6083,
+     0.6817
+    ],
+    "f1_ci95": [
+     0.6131,
+     0.6998
+    ]
+   },
+   "scene_resnet_place": {
+    "n": 600,
+    "roc_auc": 0.744,
+    "accuracy": 0.6333,
+    "f1": 0.7043,
+    "roc_auc_ci95": [
+     0.7037,
+     0.784
+    ],
+    "accuracy_ci95": [
+     0.595,
+     0.6733
+    ],
+    "f1_ci95": [
+     0.6667,
+     0.743
+    ]
+   },
+   "semantics_clip_text_image": {
+    "n": 600,
+    "roc_auc": 0.4581,
+    "accuracy": 0.5067,
+    "f1": 0.5556,
+    "roc_auc_ci95": [
+     0.4124,
+     0.5061
+    ],
+    "accuracy_ci95": [
+     0.4667,
+     0.545
+    ],
+    "f1_ci95": [
+     0.5094,
+     0.6012
+    ]
+   },
+   "semantics_clip_text_text": {
+    "n": 600,
+    "roc_auc": 0.9102,
+    "accuracy": 0.825,
+    "f1": 0.8382,
+    "roc_auc_ci95": [
+     0.8865,
+     0.9321
+    ],
+    "accuracy_ci95": [
+     0.795,
+     0.8567
+    ],
+    "f1_ci95": [
+     0.8083,
+     0.8682
+    ]
+   }
+  },
+  "seconds": 372.7531
  }
 }
