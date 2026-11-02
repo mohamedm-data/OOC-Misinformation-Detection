@@ -144,7 +144,7 @@ def plot_auc_bars(evals, title, path):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    colors = ["#9a9a9a", "#2a78b5", "#d1495b", "#e8a33d"]
+    colors = ["#9a9a9a", "#2a78b5", "#d1495b", "#e8a33d", "#4a9d5b", "#7b5ea7"]
     groups = list(next(iter(evals.values())).keys())
     x = np.arange(len(groups))
     w = 0.8 / len(evals)
