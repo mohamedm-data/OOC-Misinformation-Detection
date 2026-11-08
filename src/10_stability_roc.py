@@ -49,14 +49,15 @@ def group_aucs(y, p, methods):
     out = {"all": float(roc_auc_score(y, p))}
     for m in sorted(np.unique(methods)):
         k = methods == m
-        out[m] = float(roc_auc_score(y[k], p[k]))
+        if len(np.unique(y[k])) == 2:      # skip a group with one class only (cannot compute AUC)
+            out[m] = float(roc_auc_score(y[k], p[k]))
     return out
 
 
 def summarize(runs):
     """runs: list of {group: auc}. -> {group: {mean, sd, min, max, values}}."""
     out = {}
-    for g in runs[0]:
+    for g in [g for g in runs[0] if all(g in r for r in runs)]:
         v = np.array([r[g] for r in runs])
         out[g] = {"mean": float(v.mean()), "sd": float(v.std(ddof=1)) if len(v) > 1 else 0.0,
                   "min": float(v.min()), "max": float(v.max()), "values": [float(x) for x in v]}
@@ -195,7 +196,8 @@ def main():
         cv_res[name] = summarize(runs)
     res["grouped_cv"] = {"note": "held-out folds of the training split; groups = connected components of shared "
                                  "image/caption ids; hyperparameters from step 9; early stopping on the validation split",
-                         "fold_sizes": [int(len(ho)) for _, ho in folds], "models": cv_res}
+                         "fold_sizes": [int(len(ho)) for _, ho in folds],
+                         "largest_component_pairs": int(np.bincount(pd.factorize(comps)[0]).max()), "models": cv_res}
 
     # ============================ 3. ROC curves and 4. operating points (step 9 scores)
     print("3) ROC curves and operating points", flush=True)
@@ -248,7 +250,7 @@ def main():
     for ax, g, title in [(axes[0], "all", "All mismatch types"), (axes[1], SWAP, "CLIP text-image swaps")]:
         labels = list(dict.fromkeys(list(seed_res) + list(cv_res)))
         y = np.arange(len(labels))
-        for off, src, lab, c in [(-0.15, seed_res, "5 seeds, curated test", "#2a78b5"),
+        for off, src, lab, c in [(-0.15, seed_res, f"{len(SEEDS)} seeds, curated test", "#2a78b5"),
                                  (0.15, cv_res, f"{N_FOLDS}-fold grouped CV", "#d1495b")]:
             for i, n in enumerate(labels):
                 if n not in src:
