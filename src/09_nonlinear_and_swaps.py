@@ -95,7 +95,7 @@ def component_halves(df, seed=SEED):
     rng = np.random.default_rng(seed)
     side = dict(zip(uniq, rng.integers(0, 2, len(uniq))))
     half = np.array([side[r] for r in roots])
-    return half, len(uniq)
+    return half, len(uniq), roots
 
 
 def build_bank(df, I, T, rows, seed):
@@ -223,11 +223,11 @@ def swap_features(I, T, bank, adapter):
 
 
 # ---------------------------------------------------------------- models
-def fit_lgbm(X, y, Xv, yv, leaves, w=None):
+def fit_lgbm(X, y, Xv, yv, leaves, w=None, seed=SEED):
     import lightgbm as lgb
     clf = lgb.LGBMClassifier(n_estimators=200 if FAST else 4000, learning_rate=0.05, num_leaves=leaves,
                              min_child_samples=50, colsample_bytree=0.3, subsample=0.8, subsample_freq=1,
-                             reg_lambda=1.0, random_state=SEED, n_jobs=-1, verbose=-1)
+                             reg_lambda=1.0, random_state=seed, n_jobs=-1, verbose=-1)
     clf.fit(X, y, sample_weight=w, eval_set=[(Xv, yv)], eval_metric="auc",
             callbacks=[lgb.early_stopping(100, verbose=False)])
     return clf
@@ -319,7 +319,10 @@ def main():
     ref_val_auc = float(roc_auc_score(yva, p_ref_val))
     print(f"step 8 MLP reloaded: val AUC {ref_val_auc:.4f}, curated test AUC {roc_auc_score(ctdf.y, p_ref_cur):.4f}")
 
+    scores_store = {"cosine_baseline": (-vadf.cos.values, base_cur)}
+
     def report(name, p_val, p_cur, extra=None):
+        scores_store[name] = (np.asarray(p_val, dtype=np.float64), np.asarray(p_cur, dtype=np.float64))
         thr = val_threshold(yva, p_val)
         ev = evaluate(ctdf, p_cur, thr, ref_score=base_cur)
         d_ref, d_lr = paired_delta(ctdf, p_cur, p_ref_cur), paired_delta(ctdf, p_cur, p_lr_cur)
@@ -401,7 +404,7 @@ def main():
     # ============================ Part B: swap-aware features
     print("\nPart B: swap-aware features (cross-fitted banks + adapters)", flush=True)
     Itr, Ttr = Xtr[:, :512], Xtr[:, 512:1024]
-    half, n_comp = component_halves(trdf)
+    half, n_comp, comp_roots = component_halves(trdf)
     banks, adapters = [], []
     for h in (0, 1):
         rows = np.where(half == h)[0]
@@ -419,6 +422,9 @@ def main():
         return 0.5 * (swap_features(I, T, banks[0], adapters[0]) + swap_features(I, T, banks[1], adapters[1]))
 
     Fva, Fte = feats_eval(Xva), feats_eval(Xte)
+    # cached for step 10 (stability, ROC curves); data/ is not committed
+    np.savez(s8.EXPORT.parent / "step9_swap_features.npz", train=Ftr, val=Fva, test=Fte, components=comp_roots,
+             half=half, names=np.array(HUB_NAMES + ADAPT_NAMES))
     fnames = HUB_NAMES + ADAPT_NAMES
     # single-feature AUCs (direction-free: max(AUC, 1-AUC)) per method on validation, for the write-up
     single = {}
@@ -514,6 +520,12 @@ def main():
     res["final_model"] = {"name": final, "selected_on": "validation ROC-AUC"}
     res["seconds"] = time.time() - t0
     update_results("nonlinear_and_swaps", res)
+    # validation and curated-test scores of every model, for step 10's ROC curves and operating points (small)
+    np.savez_compressed(MODELS.parent / "metrics" / "step9_scores.npz", names=np.array(list(scores_store)),
+                        y_val=yva, y_test=ctdf.y.values, method_val=vadf.method.values.astype(str),
+                        method_test=ctdf.method.values.astype(str),
+                        **{f"val__{k}": v[0] for k, v in scores_store.items()},
+                        **{f"test__{k}": v[1] for k, v in scores_store.items()})
 
     # ---------------------------------------------------------------- figures
     ref = res["reference"]
