@@ -25,3 +25,4 @@ Notes
 - Seed 5500 everywhere.
 - 2026-10-18: added torchvision 0.29.1, ftfy 6.3.1, and OpenAI `clip` 1.0 (from GitHub) for step 6 only. Steps 5 and 7 are deterministic: rerunning them reproduced identical numbers.
 - 2026-11-01, step 8: embeddings for the 85,360 `merged_balanced` pairs are stored as float16 in `data/full_export/` (about 175 MB) so the step runs in about 3 GB RAM. Check: the step 5 setting retrained from these arrays gives the same curated test AUC (0.7513 vs. 0.751).
+- 2026-11-08, steps 9 and 10 on the real data: cloud Linux container (4 CPU cores, 15 GB RAM, Python 3.13, torch 2.15.0 CPU, scikit-learn 1.9.1, lightgbm), using `data/full_export/`, `data/curated/` and the step 8 models copied from the laptop. Step 9: `cd src && python3 09_nonlinear_and_swaps.py`, 61m48s. Step 10: `python3 10_stability_roc.py`, 67m43s. Check: the reloaded step 8 MLP reproduces curated test AUC 0.7909.
