@@ -9,6 +9,8 @@ matplotlib==3.11.2
 pillow==12.3.0
 tqdm==4.70.1
 joblib==1.6.0
+# Step 9 only (gradient boosting baseline):
+lightgbm>=4.5
 # Step 6 only (embedding preprocessing comparison):
 torchvision==0.29.1
 # optional: pip install ftfy "git+https://github.com/openai/CLIP.git"
